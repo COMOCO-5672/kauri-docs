@@ -11,7 +11,14 @@
       "name": "OBS Studio",
       "repo": "D:/github/obs-studio",
       "type": "c/cpp",
-      "doc_root": "projects/obs",
+      "doc_root": "projects/obs-studio",
+      "notes": "按本机实际路径修改；也可使用逻辑名 obs-studio"
+    },
+    "obs-studio": {
+      "name": "OBS Studio",
+      "repo": "D:/github/obs-studio",
+      "type": "c/cpp",
+      "doc_root": "projects/obs-studio",
       "notes": "按本机实际路径修改"
     },
     "webrtc": {
