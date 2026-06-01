@@ -1,0 +1,25 @@
+{
+  "projects": {
+    "ffmpeg": {
+      "name": "FFmpeg",
+      "repo": "D:/github/FFmpeg",
+      "type": "c/cpp",
+      "doc_root": "projects/ffmpeg",
+      "notes": "示例：本机源码为 n6.0.1-24-gdc02ba2637-dirty"
+    },
+    "obs": {
+      "name": "OBS Studio",
+      "repo": "D:/github/obs-studio",
+      "type": "c/cpp",
+      "doc_root": "projects/obs",
+      "notes": "按本机实际路径修改"
+    },
+    "webrtc": {
+      "name": "WebRTC",
+      "repo": "D:/github/webrtc",
+      "type": "c/cpp",
+      "doc_root": "projects/webrtc",
+      "notes": "按本机实际路径修改"
+    }
+  }
+}
