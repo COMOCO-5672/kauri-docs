@@ -6,6 +6,8 @@
 
 - `projects/registry.example.json`: 项目逻辑名到本机源码路径的配置样例。
 - `projects/ffmpeg/`: FFmpeg 示例文档。
+- `projects/obs-studio/`: OBS Studio 文档。
+- `projects/webrtc/`: WebRTC Native/C++ 与 RTC 架构文档。
 - `agents/project-resolution.md`: AI Agent 如何在不同电脑上解析项目路径。
 - `agents/visual-doc-standard.md`: 所有项目文档的图文并茂规范。
 - `skills/project-framework-docs/SKILL.md`: 项目框架文档整理 skill 草案。

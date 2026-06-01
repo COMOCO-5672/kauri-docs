@@ -23,7 +23,7 @@
     },
     "webrtc": {
       "name": "WebRTC",
-      "repo": "D:/github/webrtc",
+      "repo": "D:/github/google/webrtc",
       "type": "c/cpp",
       "doc_root": "projects/webrtc",
       "notes": "按本机实际路径修改"
