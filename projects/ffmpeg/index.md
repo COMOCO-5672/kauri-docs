@@ -27,8 +27,8 @@
 - 硬件后端关系图：见 `codec-and-hwaccel.md`。
 - Dolby Vision 元数据流图：见 `dolby-vision.md`。
 - RPU 解析结构图：见 `dolby-vision.md`。
-- 播放器容器、packet、decoder、frame 数据流和高级工程经验：见 `player-av-dataflow.md`。
-- HEVC hvcC、AnnexB、BSF 转换与失败链路图：见 `hevc-hvcc-annexb-bsf.md`。
+- 播放器容器、packet、decoder、frame 数据流和高级工程经验：见 `2.player-av-dataflow.md`。
+- HEVC hvcC、AnnexB、BSF 转换与失败链路图：见 `1.hevc-hvcc-annexb-bsf.md`。
 - MP4 起播和参数集链路图：见 `engineering-playbook.md`。
 - HLS/m3u8 收流与分片读取图：见 `engineering-playbook.md`。
 - 快速 seek 调用链图：见 `engineering-playbook.md`。
