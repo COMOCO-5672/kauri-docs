@@ -12,6 +12,8 @@
 - [整体架构](architecture.md)
 - [编解码与硬件加速](codec-and-hwaccel.md)
 - [Dolby Vision 支持](dolby-vision.md)
+- [播放器高级音视频数据流与工程经验](player-av-dataflow.md)
+- [HEVC hvcC / AnnexB / BSF 诊断](hevc-hvcc-annexb-bsf.md)
 - [工程问题手册](engineering-playbook.md)
 - [面试问答](interview-qa.md)
 - [缺陷与不完善场景](gaps-and-risks.md)
@@ -25,6 +27,8 @@
 - 硬件后端关系图：见 `codec-and-hwaccel.md`。
 - Dolby Vision 元数据流图：见 `dolby-vision.md`。
 - RPU 解析结构图：见 `dolby-vision.md`。
+- 播放器容器、packet、decoder、frame 数据流和高级工程经验：见 `player-av-dataflow.md`。
+- HEVC hvcC、AnnexB、BSF 转换与失败链路图：见 `hevc-hvcc-annexb-bsf.md`。
 - MP4 起播和参数集链路图：见 `engineering-playbook.md`。
 - HLS/m3u8 收流与分片读取图：见 `engineering-playbook.md`。
 - 快速 seek 调用链图：见 `engineering-playbook.md`。
@@ -41,3 +45,4 @@
 - 编解码调度：`libavcodec/decode.c`、`libavcodec/encode.c`。
 - 硬解配置：`libavcodec/hwconfig.h`、`libavcodec/hwaccels.h`。
 - Dolby Vision：`libavcodec/dovi_rpu.c`、`libavcodec/hevcdec.c`、`libavformat/mov.c`、`libavformat/mpegts.c`。
+- HEVC MP4/AnnexB：`libavcodec/hevc_mp4toannexb_bsf.c`、`libavcodec/hevcdec.c`、`libavcodec/h2645_parse.c`、`libavformat/mov.c`。
