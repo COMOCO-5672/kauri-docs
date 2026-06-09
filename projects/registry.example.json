@@ -34,6 +34,13 @@
       "type": "c/cpp",
       "doc_root": "projects/libplacebo",
       "notes": "GPU video rendering, color management, HDR/tone mapping, Vulkan/D3D11/OpenGL backends"
+    },
+    "portaudio": {
+      "name": "PortAudio",
+      "repo": "D:/github/portaudio",
+      "type": "c/cpp",
+      "doc_root": "projects/portaudio",
+      "notes": "Cross-platform audio I/O abstraction over WASAPI, ALSA, CoreAudio, JACK, PulseAudio, WMME, DirectSound, ASIO and related host APIs"
     }
   }
 }
