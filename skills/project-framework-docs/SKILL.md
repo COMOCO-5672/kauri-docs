@@ -18,14 +18,17 @@ description: Build and update high-standard, source-code-grounded architecture a
 - Ground technical claims in source references: `path/file.c:line` plus function or structure name.
 - Make every project visually documented. Do not produce text-only architecture or experience docs.
 - Add diagrams before dense tables. Use Mermaid for maintainable architecture, flow, sequence, state, and dependency diagrams.
+- For broad project documentation, do not stop at a single architecture diagram. Build a full project knowledge map that explains what the project can do, what it cannot do, where it fits in a real product, which platforms or deployment targets matter, how data flows through the system, and how to choose between this project and alternatives.
+- Use plain-language analogies when they clarify a hard concept. A short "comic-style" storyboard, ASCII sketch, or Mermaid diagram with familiar roles is allowed when it helps the reader form intuition, but it must be followed by the real modules, data structures, and source references.
 - Every major document should contain at least one diagram, and every project should contain an overall architecture diagram, main flow diagram, key subsystem diagram, and gap/risk classification diagram.
 - Use structured emphasis blocks in advanced docs:
   - `> [!IMPORTANT]` for contracts, invariants, and must-not-break rules.
   - `> [!WARNING]` for production risks, weak format support, broken files, platform/driver limits, and data-contract mismatch.
   - `> [!TIP]` for implementation strategies, logging, fallback, and debugging workflow.
   - `> [!NOTE]` for background knowledge that explains standards or format behavior.
-- For experience docs, cover architecture, data contracts, normal flow, abnormal flow, container/format differences, advanced debugging, fallback strategy, logging matrix, and source-grounded examples.
+- For experience docs, cover architecture, capability boundaries, data contracts, normal flow, abnormal flow, container/format/protocol differences, platform differences, integration patterns, solution alternatives, advanced debugging, fallback strategy, logging matrix, and source-grounded examples.
 - For media/player experience docs, explicitly distinguish container metadata, `AVCodecParameters`/extradata, packet payload, packet side data, decoder context, `AVFrame` properties, frame side data, renderer/AO capabilities, and A/V clock behavior.
+- For projects that parse file formats, protocols, containers, packets, messages, schemas, or binary layouts, include a format/protocol parsing atlas. It must state where each key piece of data lives on disk/wire, which parser reads it, which internal structure receives it, and which downstream module consumes it.
 - Describe unsupported or weakly supported scenarios by layer: container/demux, parser/BSF, decoder, hardware API, renderer, audio output, platform/driver, and user configuration. Do not collapse them into "file is bad" without evidence.
 - Include practical symptoms and probes for risky cases such as missing or non-repeated SPS/PPS/VPS, MP4 NALFF versus AnnexB mismatch, TS/M2TS discontinuity, HLS/DASH representation switches, Dolby Vision profile/fallback, HDR metadata loss, audio passthrough, and seek after sparse parameter sets.
 - Prefer `rg` for symbol discovery.
@@ -43,7 +46,12 @@ Use one folder per logical project:
 ```text
 projects/<id>/
   index.md
+  what-<project>-can-do.md
   architecture.md
+  format-or-protocol-parsing-atlas.md
+  platform-and-runtime-matrix.md
+  integration-patterns.md
+  solution-decision-guide.md
   codec-and-hwaccel.md
   dolby-vision.md
   engineering-playbook.md
@@ -52,6 +60,22 @@ projects/<id>/
 ```
 
 Adapt file names to the project. For non-media projects, replace codec-specific files with domain-specific files.
+
+For a project that is being documented for broad understanding, prefer this richer layout:
+
+```text
+projects/<id>/
+  index.md
+  what-<project>-can-do.md          # capability boundary, product fit, cannot-do list
+  architecture.md                   # top-level modules and main flows
+  format-or-protocol-parsing-atlas.md # where key bytes/messages live and how parsers map them to internal structures
+  platform-and-runtime-matrix.md    # OS, hardware, dependencies, build-time vs runtime capability
+  integration-patterns.md           # CLI/API/library/service/mobile/desktop embedding options
+  solution-decision-guide.md        # when to use this project versus alternatives
+  engineering-playbook.md           # production troubleshooting and fallback
+  gaps-and-risks.md                 # source/build/runtime/usage limitations
+  interview-qa.md                   # architecture and debugging judgment
+```
 
 For advanced engineering experience documents, use explicit names that do not look like generic architecture notes:
 
@@ -75,6 +99,7 @@ Follow `agents/visual-doc-standard.md` when available. For each diagram:
 - Put source entry points after the diagram.
 - Keep node names tied to real modules, files, functions, or data structures.
 - Prefer several focused diagrams over one oversized diagram.
+- Prefer "intuition first, source second": start hard topics with a small analogy or storyboard if it helps, then immediately map the analogy to actual modules, data structures, functions, and failure modes.
 
 Follow `agents/experience-doc-standard.md` when available for advanced engineering experience documents. Load it before creating or substantially revising files named `player-*.md`, `*-experience.md`, `*-diagnosis.md`, or any user-requested "经验文档".
 
@@ -82,12 +107,16 @@ Follow `agents/experience-doc-standard.md` when available for advanced engineeri
 
 When documenting FFmpeg, inspect at least:
 
+- Capability boundary and product fit: distinguish `ffmpeg` CLI, `ffprobe`, `ffplay`, `libavformat`, `libavcodec`, `libavfilter`, `libavutil`, and the responsibilities that remain in the application.
 - CLI orchestration: `fftools/ffmpeg*.c`, `fftools/ffmpeg*.h`.
 - Demux/mux: `libavformat/demux.c`, `libavformat/mux.c`, relevant format files.
+- Format parsing atlas: distinguish containers/transports from elementary media streams. Cover MP4/MOV (`mov.c` atoms such as `moov`, `stsd`, `stts`, `ctts`, `elst`, `avcC`, `hvcC`, `dvcC`, `esds`, `dac3`, `dec3`, `dOps`), Matroska/WebM (`matroskadec.c` EBML, Tracks, CodecPrivate, Cluster, Block), MPEG-TS/M2TS (`mpegts.c` PAT, PMT, PID, PES, PCR, PTS/DTS), HLS (`hls.c` playlist, variant, EXT-X-MAP, EXT-X-KEY, segments), FLV (`flvdec.c` tags and onMetaData), raw elementary streams, audio stream formats (AAC ADTS/LATM, MP3, Opus/Ogg, FLAC, AC-3/E-AC-3, TrueHD/MLP), video stream formats (H.264, HEVC, AV1, VP9 and their parser/BSF/extradata paths), and subtitle formats (SRT/SubRip, ASS/SSA, WebVTT, mov_text, PGS, DVB, DVD subtitles).
 - Decode/encode dispatch: `libavcodec/decode.c`, `libavcodec/encode.c`, `libavcodec/allcodecs.c`.
 - Hardware acceleration: `libavcodec/hwconfig.h`, `libavcodec/hwaccels.h`, `nvdec*`, `vaapi*`, `dxva2*`, `qsv*`, `videotoolbox*`, `mediacodec*`, `vdpau*`.
+- Platform/runtime matrix: distinguish source support, configure/build enablement, runtime hardware/driver availability, and full-pipeline compatibility across Windows, Linux, macOS, iOS, Android, server GPU, and embedded devices.
 - Dolby Vision: `libavcodec/dovi_rpu.*`, `libavcodec/hevcdec.*`, `libavutil/dovi_meta.h`, `libavformat/mov*`, `libavformat/mpegts*`.
 - Engineering issues: HLS/m3u8, fast seek, MP4 `moov`/`mdat`/A-V interleaving/`avcC`/`hvcC`, `h264_mp4toannexb`, `hevc_mp4toannexb`, audio `abuffer`/`abuffersink`/`aresample`, ffplay audio rendering, PTS/DTS/time_base, low-latency options, buffer strategy boundaries.
+- Solution alternatives: compare FFmpeg with platform players/APIs, GStreamer, WebRTC, mpv/libplacebo, and commercial SDKs based on the problem layer: container/codec/filter/mux versus playback UX, RTC, DRM, rendering, or platform lifecycle.
 
 ## Validation
 

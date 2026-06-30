@@ -9,8 +9,13 @@
 
 ## 文档
 
+- [FFmpeg 能力边界总览](what-ffmpeg-can-do.md)
 - [整体架构](architecture.md)
+- [常见格式解析地图](format-parsing-atlas.md)
 - [编解码与硬件加速](codec-and-hwaccel.md)
+- [平台与硬件加速矩阵](platform-and-hwaccel-matrix.md)
+- [FFmpeg 集成方式](integration-patterns.md)
+- [FFmpeg 方案决策指南](solution-decision-guide.md)
 - [Dolby Vision 支持](dolby-vision.md)
 - [播放器高级音视频数据流与工程经验](2.player-av-dataflow.md)
 - [HEVC hvcC / AnnexB / BSF 诊断](1.hevc-hvcc-annexb-bsf.md)
@@ -20,11 +25,16 @@
 
 ## 图示索引
 
+- FFmpeg 能力地图、工具/库/产品边界和类比图：见 `what-ffmpeg-can-do.md`。
 - 整体分层架构图：见 `architecture.md`。
 - ffmpeg 转码主流程图：见 `architecture.md`。
+- MP4/MOV、MKV、TS、HLS、FLV 容器，以及 AAC、MP3、Opus、H.264、HEVC、AV1、VP9、SRT、ASS、WebVTT、PGS、DVB、DVD 字幕的解析图和关键数据位置：见 `format-parsing-atlas.md`。
 - 解码 API 调用链图：见 `codec-and-hwaccel.md`。
 - 硬解选择流程图：见 `codec-and-hwaccel.md`。
 - 硬件后端关系图：见 `codec-and-hwaccel.md`。
+- 平台支持三层判断图、硬解/硬滤镜/硬编码链路图：见 `platform-and-hwaccel-matrix.md`。
+- CLI、`libav*`、播放器、服务端、移动端集成方式图：见 `integration-patterns.md`。
+- FFmpeg 与系统播放器、GStreamer、WebRTC、mpv/libplacebo 的方案决策树：见 `solution-decision-guide.md`。
 - Dolby Vision 元数据流图：见 `dolby-vision.md`。
 - RPU 解析结构图：见 `dolby-vision.md`。
 - 播放器容器、packet、decoder、frame 数据流和高级工程经验：见 `2.player-av-dataflow.md`。
