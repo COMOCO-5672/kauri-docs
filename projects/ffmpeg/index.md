@@ -2,14 +2,15 @@
 
 源码快照：
 
-- 本机路径：`D:/github/FFmpeg`
-- Git describe：`n6.0.1-24-gdc02ba2637-dirty`
-- Commit：`dc02ba263755b981b809ad2708b77c82586669d9`
-- 文档日期：2026-06-01
+- 本机路径：`/Users/mac/work/github/FFmpeg`
+- Git describe：`n8.2-dev-2193-g3c287af3af`（分支 `release/9.0`）
+- Commit：`3c287af3af`
+- 文档日期：2026-08-02
 
 ## 文档
 
 - [FFmpeg 能力边界总览](what-ffmpeg-can-do.md)
+- [版本迭代史：从 4.x 到 9.0](version-history.md)
 - [整体架构](architecture.md)
 - [常见格式解析地图](format-parsing-atlas.md)
 - [编解码与硬件加速](codec-and-hwaccel.md)
@@ -26,6 +27,7 @@
 ## 图示索引
 
 - FFmpeg 能力地图、工具/库/产品边界和类比图：见 `what-ffmpeg-can-do.md`。
+- FFmpeg 主版本时间线、版本演进图：见 `version-history.md`。
 - 整体分层架构图：见 `architecture.md`。
 - ffmpeg 转码主流程图：见 `architecture.md`。
 - MP4/MOV、MKV、TS、HLS、FLV 容器，以及 AAC、MP3、Opus、H.264、HEVC、AV1、VP9、SRT、ASS、WebVTT、PGS、DVB、DVD 字幕的解析图和关键数据位置：见 `format-parsing-atlas.md`。
