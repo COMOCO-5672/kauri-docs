@@ -13,6 +13,7 @@
 - [平台采集：视频与音频](capture.md)
 - [音频混音与多音轨](audio-mixing.md)
 - [编码、硬编与推流](encoding-and-streaming.md)
+- [场景切换动画（Transition）实现原理](1.scene-transition.md)
 - [工程问题手册](engineering-playbook.md)
 - [面试问答](interview-qa.md)
 
@@ -26,6 +27,7 @@
 - 输出、编码、交错、RTMP 推流图：见 `encoding-and-streaming.md`。
 - 硬编后端关系图：见 `encoding-and-streaming.md`。
 - 工程问题定位图：见 `engineering-playbook.md`。
+- 转场架构图、切场景时序图、视频渲染决策图、T-Bar 状态图、Stinger 流程图：见 `1.scene-transition.md`。
 
 ## 快速定位
 
@@ -33,6 +35,7 @@
 - Source API：`libobs/obs-source.h`。
 - Encoder API：`libobs/obs-encoder.h`。
 - Output API：`libobs/obs-output.h`。
+- 转场：`libobs/obs-source-transition.c`、`plugins/obs-transitions`、`frontend/widgets/OBSBasic_Transitions.cpp`。
 - Windows 采集：`plugins/win-capture`、`plugins/win-dshow`、`plugins/win-wasapi`。
 - macOS 采集：`plugins/mac-avcapture`、`plugins/mac-capture`、`plugins/mac-syphon`。
 - Linux 采集：`plugins/linux-pipewire`、`plugins/linux-v4l2`、`plugins/linux-capture`、`plugins/linux-pulseaudio`、`plugins/linux-alsa`。
